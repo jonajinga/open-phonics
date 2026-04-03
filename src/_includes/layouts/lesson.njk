@@ -83,13 +83,20 @@ bodyClass: page-lesson
         </button>
       </div>
 
-      {# Back / Next buttons #}
+      {# Nav row: exit + back + next + theme toggle #}
       <div class="step-nav">
+        <a href="/lessons/" class="lesson-exit-btn" title="Exit Lesson" aria-label="Exit Lesson">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </a>
         <button class="btn--nav-prev" id="prev-btn" title="Back" aria-label="Previous step" onclick="window.prevStep && window.prevStep()">
           {% include "partials/icons/arrow-left.njk" %}
         </button>
         <button class="btn--nav-next" id="next-btn" title="Next" aria-label="Next step" onclick="window.nextStep && window.nextStep()">
           {% include "partials/icons/arrow-right.njk" %}
+        </button>
+        <button class="theme-toggle lesson-theme-toggle" aria-label="Switch to dark mode">
+          <span class="theme-toggle__light">{% include "partials/icons/moon.njk" %}</span>
+          <span class="theme-toggle__dark">{% include "partials/icons/sun.njk" %}</span>
         </button>
       </div>
     </div>
