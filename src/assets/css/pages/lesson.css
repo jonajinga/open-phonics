@@ -10,7 +10,7 @@
 /* === Child View (always on top) === */
 .lesson-child {
   flex: 0 0 auto;
-  min-height: 40vh;
+  min-height: 30vh;
   display: flex;
   align-items: center;
   justify-content: center;

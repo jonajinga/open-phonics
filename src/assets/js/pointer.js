@@ -377,5 +377,30 @@
     }
   });
 
-  document.addEventListener("DOMContentLoaded", function () { showStep(0); });
+  document.addEventListener("DOMContentLoaded", function () {
+    showStep(0);
+
+    // Auto-hide header: show on mouse near top, hide after delay
+    var header = document.querySelector(".site-header");
+    if (header && document.body.classList.contains("page-lesson")) {
+      var hideTimer = null;
+      document.addEventListener("mousemove", function (e) {
+        if (e.clientY < 20) {
+          header.classList.add("is-visible");
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(function () { header.classList.remove("is-visible"); }, 3000);
+        }
+      });
+      // Touch: show header on swipe down from top
+      var touchStartY = 0;
+      document.addEventListener("touchstart", function (e) { touchStartY = e.touches[0].clientY; });
+      document.addEventListener("touchmove", function (e) {
+        if (touchStartY < 30 && e.touches[0].clientY - touchStartY > 20) {
+          header.classList.add("is-visible");
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(function () { header.classList.remove("is-visible"); }, 3000);
+        }
+      });
+    }
+  });
 })();

@@ -67,3 +67,34 @@
 .page-lesson .btn-exit-lesson { display: inline-flex; }
 .page-lesson .hamburger-btn { display: none; }
 .page-lesson .main-nav { display: none; }
+
+/* Auto-hide header in lessons — slides up, peek area to pull down */
+.page-lesson .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+.page-lesson .site-header:hover,
+.page-lesson .site-header.is-visible {
+  transform: translateY(0);
+}
+
+/* Thin peek bar at top of lesson to hint the header is there */
+.page-lesson::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--bg-header);
+  z-index: 49;
+  cursor: pointer;
+  transition: height 0.2s;
+}
+.page-lesson:hover::before {
+  height: 0;
+}
