@@ -1,0 +1,141 @@
+/* ===== Design Tokens ===== */
+:root {
+  /* Brand — Deep Teal */
+  --teal-50: #e6f5f5;
+  --teal-100: #b3e0e0;
+  --teal-200: #80cccc;
+  --teal-400: #36b5ab;
+  --teal-500: #0d7377;
+  --teal-600: #0a5c5f;
+  --teal-700: #074245;
+  --teal-800: #053233;
+  --teal-900: #032222;
+  --teal-950: #021616;
+
+  /* Accent — Gold */
+  --gold-400: #d4a017;
+  --gold-500: #b8860b;
+  --gold-600: #9a7209;
+
+  /* Neutrals — simple warm grays */
+  --stone-50: #fafaf9;
+  --stone-100: #f5f5f4;
+  --stone-200: #e7e5e4;
+  --stone-300: #d6d3d1;
+  --stone-400: #a8a29e;
+  --stone-500: #78716c;
+  --stone-600: #57534e;
+  --stone-700: #44403c;
+  --stone-800: #292524;
+  --stone-900: #1c1917;
+  --stone-950: #0c0a09;
+
+  /* Semantic surfaces — light mode */
+  --bg-page: #f5f5f4;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #fafaf9;
+  --bg-header: #053233;
+  --bg-child-view: #fffef7;
+  --child-text-color: #1c1917;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --text-on-header: #ffffff;
+  --border-color: #e7e5e4;
+
+  /* Feedback */
+  --green-50: #f0fdf4;
+  --green-200: #bbf7d0;
+  --green-500: #1a7a3a;
+  --green-600: #15803d;
+  --green-800: #14532d;
+  --green-900-20: rgba(20, 83, 45, 0.2);
+
+  --rose-50: #fef2f2;
+  --rose-200: #fecaca;
+  --rose-400: #e06c75;
+  --rose-500: #c53030;
+  --rose-600: #b91c1c;
+  --rose-800: #7f1d1d;
+  --rose-900-20: rgba(127, 29, 29, 0.2);
+
+  --amber-50: #fffbeb;
+  --amber-100-80: rgba(254, 243, 199, 0.8);
+  --amber-400: #f59e0b;
+  --amber-500: #d97706;
+  --amber-600: #b45309;
+  --amber-900-20: rgba(120, 53, 15, 0.2);
+
+  /* Pointer */
+  --dot-color: #dc2626;
+  --dot-border: #ffffff;
+  --track-color: #1c1917;
+
+  /* Typography */
+  --font-ui: 'Source Sans 3', 'Source Sans Pro', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-child: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Radii — squared edges */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
+
+  /* Transitions */
+  --transition-colors: color 0.2s, background-color 0.2s, border-color 0.2s;
+
+  /* Layout */
+  --container-max: 72rem;
+  --header-height: 3.5rem;
+}
+
+/* ===== Dark Mode ===== */
+[data-theme="dark"] {
+  --bg-page: #0c0a09;
+  --bg-surface: #1c1917;
+  --bg-surface-alt: #292524;
+  --bg-header: #021616;
+  --bg-child-view: #1c1917;
+  --child-text-color: #f5f5f4;
+  --text-primary: #e7e5e4;
+  --text-secondary: #a8a29e;
+  --border-color: #44403c;
+  --dot-border: #1c1917;
+  --track-color: #e7e5e4;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-page: #0c0a09;
+    --bg-surface: #1c1917;
+    --bg-surface-alt: #292524;
+    --bg-header: #021616;
+    --bg-child-view: #1c1917;
+    --child-text-color: #f5f5f4;
+    --text-primary: #e7e5e4;
+    --text-secondary: #a8a29e;
+    --border-color: #44403c;
+    --dot-border: #1c1917;
+    --track-color: #e7e5e4;
+  }
+}

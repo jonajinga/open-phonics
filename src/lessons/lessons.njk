@@ -1,0 +1,12 @@
+---
+pagination:
+  data: lessons
+  size: 1
+  alias: lesson
+  addAllPagesToCollections: true
+permalink: /lessons/lesson-{{ lesson.id | pad }}/
+layout: layouts/lesson.njk
+eleventyComputed:
+  title: "{{ lesson.title }}"
+  description: "Learn the sounds: {{ lesson.target }}"
+---

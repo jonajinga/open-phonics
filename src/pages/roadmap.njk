@@ -1,0 +1,60 @@
+---
+layout: layouts/base.njk
+title: Learning Roadmap
+description: Visual roadmap of the Open Phonics reading program showing every lesson milestone from first sounds to fluent reading.
+permalink: /roadmap/
+bodyClass: page-guide
+---
+<div class="content-page">
+  <div class="content-page__inner" style="max-width:72rem">
+    <h1 class="content-page__title">Learning Roadmap</h1>
+    <p class="content-page__intro">Follow the path from first sounds to fluent reading. Each dot is a lesson. Milestones mark new sounds introduced.</p>
+
+    {% for phase in phases %}
+    <section class="roadmap-phase">
+      <div class="roadmap-phase__header">
+        <h2 class="roadmap-phase__title"><a href="/phases/{{ phase.slug }}/">Phase {{ phase.id }}: {{ phase.title | replace("Phase " + phase.id + ": ", "") }}</a></h2>
+        <span class="roadmap-phase__meta">{{ phase.lessonRange }} &middot; {{ phase.soundsIntroduced.length }} sounds &middot; {{ wordList | where("phase", phase.id) | length }} words</span>
+      </div>
+      <p class="roadmap-phase__desc">{{ phase.description }}</p>
+
+      <div class="roadmap-track">
+        {% set phaseStart = phase.lessonRange | replace("-.*", "") %}
+        {% set phaseEnd = phase.lessonRange | replace(".*-", "") %}
+        {% for lesson in lessons | where("phase", phase.id) %}
+        {% set isMilestone = false %}
+        {% for s in phase.soundsIntroduced %}
+          {% if s.lesson == lesson.id %}
+            {% set isMilestone = true %}
+          {% endif %}
+        {% endfor %}
+        <a href="/lessons/lesson-{{ lesson.id | pad }}/" class="roadmap-dot{% if isMilestone %} roadmap-dot--milestone{% endif %}" title="Lesson {{ lesson.id }}: {{ lesson.target }}">
+          <span class="roadmap-dot__number">{{ lesson.id }}</span>
+          {% if isMilestone %}
+          <span class="roadmap-dot__sound">
+            {% for s in phase.soundsIntroduced %}{% if s.lesson == lesson.id %}{{ s.symbol }}{% endif %}{% endfor %}
+          </span>
+          {% endif %}
+        </a>
+        {% endfor %}
+      </div>
+
+      {# Stories for this phase #}
+      {% set phaseStories = collections.stories | where("data.phase", phase.id) %}
+      {% if phaseStories.length > 0 %}
+      <div class="roadmap-stories">
+        <span class="roadmap-stories__label">Stories:</span>
+        {% for story in phaseStories %}
+        <a href="{{ story.url }}" class="roadmap-stories__link">{{ story.data.title }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </section>
+    {% endfor %}
+
+    <div class="content-page__cta">
+      <a href="/lessons/" class="btn btn--cta">Start Lessons</a>
+      <a href="/curriculum/" class="btn btn--outline" style="color:var(--text-primary);border-color:var(--border-color)">Curriculum Reference</a>
+    </div>
+  </div>
+</div>

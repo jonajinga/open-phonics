@@ -1,0 +1,18 @@
+<title>{{ title }}{% if title %} | {% endif %}{{ meta.shortTitle }}</title>
+<meta name="description" content="{{ description or meta.description }}">
+<link rel="canonical" href="{{ meta.url }}{{ page.url }}">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ title or meta.title }}">
+<meta property="og:description" content="{{ description or meta.description }}">
+<meta property="og:url" content="{{ meta.url }}{{ page.url }}">
+<meta property="og:image" content="{{ meta.url }}{{ ogImage or meta.ogImage }}">
+<meta property="og:locale" content="{{ meta.locale }}">
+<meta property="og:site_name" content="{{ meta.title }}">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title or meta.title }}">
+<meta name="twitter:description" content="{{ description or meta.description }}">
+<meta name="twitter:image" content="{{ meta.url }}{{ ogImage or meta.ogImage }}">

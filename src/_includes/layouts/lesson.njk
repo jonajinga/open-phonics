@@ -1,0 +1,120 @@
+---
+layout: layouts/base.njk
+bodyClass: page-lesson
+---
+<div class="lesson-shell" aria-label="Lesson: {{ lesson.title }}">
+  {# === Child View (always on top) === #}
+  <div class="lesson-child">
+    <div class="lesson-child__display-area">
+      <div class="child-text{% if lesson.steps[0].track == 'none' %} child-text--story{% endif %}" id="child-text" aria-live="polite"></div>
+      <div class="pointer-container" id="pointer-container">
+        <div class="cue-arrow" id="cue-arrow">
+          <div class="arrow-start-dot"></div>
+          <div class="arrow-line" id="arrow-line-el">
+            <div class="arrow-head"></div>
+          </div>
+        </div>
+        <div class="cue-stop" id="cue-stop">
+          <div class="stop-dot"></div>
+        </div>
+        <div class="finger-dot" id="teacher-finger"></div>
+      </div>
+    </div>
+  </div>
+
+  {# === Teacher Panel === #}
+  <div class="lesson-teacher">
+    {# Lesson/Phase indicator bar #}
+    <div class="lesson-info-bar">
+      <div class="lesson-info-bar__top">
+        <span class="lesson-info-bar__phase">Phase {{ lesson.phase }}</span>
+        <span class="lesson-info-bar__sep">&middot;</span>
+        <span class="lesson-info-bar__lesson">Lesson {{ lesson.id }}</span>
+        <span class="lesson-info-bar__sep">&middot;</span>
+        <span class="lesson-info-bar__target">{{ lesson.target }}</span>
+      </div>
+      <div class="lesson-info-bar__steps">
+        <div class="step-dots" id="step-dots" role="group" aria-label="Lesson progress: {{ lesson.steps | length }} steps">
+          {% for step in lesson.steps %}
+          <div class="step-dot{% if loop.first %} is-active{% endif %}" data-step="{{ loop.index0 }}" role="img" aria-label="Step {{ loop.index }}"></div>
+          {% endfor %}
+        </div>
+        <span class="step-number" id="step-number">Step 1</span>
+      </div>
+    </div>
+    <div class="lesson-teacher__body">
+
+      {# Say script #}
+      <p class="step-say" id="step-say"></p>
+
+      {# Do instruction (under script) #}
+      <div class="step-do">
+        <span class="step-do__icon">{% include "partials/icons/info.njk" %}</span>
+        <p class="step-do__text" id="step-do"></p>
+      </div>
+
+      {# Feedback: praise first, then correct underneath #}
+      <div class="feedback-container" id="feedback-container" aria-live="polite">
+        <div class="feedback-box feedback-box--praise" id="praise-box">
+          {% include "partials/icons/check-circle.njk" %}
+          <span class="feedback-box__text" id="praise-text"></span>
+        </div>
+        <div class="feedback-box feedback-box--correct" id="correct-box">
+          {% include "partials/icons/refresh-cw.njk" %}
+          <span class="feedback-box__text" id="correct-text"></span>
+        </div>
+      </div>
+
+      {# Pointer remote controls #}
+      <div class="pointer-remote" id="pointer-remote">
+        <button class="btn btn--move" id="btn-play-pause" title="Play" aria-label="Play" onclick="window.playPause && window.playPause()">
+          <span id="icon-play">{% include "partials/icons/play.njk" %}</span>
+          <span id="icon-pause" class="hidden">{% include "partials/icons/pause.njk" %}</span>
+        </button>
+        <button class="btn btn--reset" id="btn-reset-dot" title="Reset" aria-label="Reset pointer" onclick="window.resetDot && window.resetDot()">
+          {% include "partials/icons/rotate-ccw.njk" %}
+        </button>
+        <div class="speed-control">
+          <input type="range" id="speed-slider" min="0" max="100" value="50" class="speed-control__slider" aria-label="Animation speed">
+        </div>
+        <button class="btn-toggle-pointer" id="btn-toggle-pointer" title="Hide/Show Pointer" aria-label="Hide/Show Pointer" onclick="window.togglePointerVisibility && window.togglePointerVisibility()">
+          <span id="icon-eye-open">{% include "partials/icons/eye.njk" %}</span>
+          <span id="icon-eye-closed" class="hidden">{% include "partials/icons/eye-off.njk" %}</span>
+        </button>
+      </div>
+
+      {# Back / Next buttons #}
+      <div class="step-nav">
+        <button class="btn--nav-prev" id="prev-btn" title="Back" aria-label="Previous step" onclick="window.prevStep && window.prevStep()">
+          {% include "partials/icons/arrow-left.njk" %}
+        </button>
+        <button class="btn--nav-next" id="next-btn" title="Next" aria-label="Next step" onclick="window.nextStep && window.nextStep()">
+          {% include "partials/icons/arrow-right.njk" %}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{# Second Reading + Comprehension (hidden, shown by JS after last step) #}
+<div class="second-reading hidden" id="second-reading">
+  <div class="second-reading__inner">
+    <h2 class="second-reading__title">Second Reading</h2>
+    <p class="second-reading__instruction">Read the story again. This time, the hints are gone!</p>
+    <div class="second-reading__text school-font" id="second-reading-text"></div>
+    <div class="second-reading__comprehension" id="comprehension-section">
+      <h3 class="second-reading__subtitle">Comprehension</h3>
+      <div id="comprehension-questions"></div>
+    </div>
+    <div class="second-reading__actions">
+      <button class="btn btn--cta" id="btn-complete-lesson" onclick="window.completeLesson && window.completeLesson()">Complete Lesson</button>
+    </div>
+  </div>
+</div>
+
+<script id="lesson-data" type="application/json">{{ lesson | dump | safe }}</script>
+
+{% block scripts %}
+<script src="/assets/js/pointer.js" defer></script>
+<script src="/assets/js/progress.js" defer></script>
+{% endblock %}

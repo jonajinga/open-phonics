@@ -1,0 +1,81 @@
+---
+layout: layouts/base.njk
+title: Pronunciation Guide
+description: Complete sound chart for the Open Phonics reading program. Learn how to pronounce each sound correctly.
+permalink: /pronunciation-guide/
+bodyClass: page-guide
+---
+<div class="content-page">
+  <div class="content-page__inner" style="max-width:64rem">
+    <h1 class="content-page__title">Pronunciation Guide</h1>
+    <p class="content-page__intro">This chart shows every sound in the Open Phonics program, in the order they are introduced. Use this as a reference when teaching. Voiced sounds use the vocal cords; whispered sounds do not.</p>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">Key Concepts</h2>
+      <div class="guide-cards">
+        <div class="guide-card">
+          <h3 class="guide-card__title">Voiced Sounds</h3>
+          <p>Your vocal cords vibrate. Place your hand on your throat &mdash; you can feel the buzz. Examples: mmm, aaa, rrr, ddd.</p>
+        </div>
+        <div class="guide-card">
+          <h3 class="guide-card__title">Whispered Sounds</h3>
+          <p>No vocal cord vibration &mdash; just air. Keep these sounds quiet and short. Examples: sss, t, fff, p.</p>
+        </div>
+        <div class="guide-card">
+          <h3 class="guide-card__title">Continuous Sounds</h3>
+          <p>Can be held and stretched: mmmmm, sssss, aaaaa. Move the pointer slowly across these sounds.</p>
+        </div>
+        <div class="guide-card">
+          <h3 class="guide-card__title">Stop Sounds</h3>
+          <p>Cannot be stretched &mdash; say them quickly: t, d, c, g, p, b, k. The pointer taps instead of gliding.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">Complete Sound Chart</h2>
+      <div class="sound-chart-wrapper">
+        <table class="sound-chart">
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Pronounced</th>
+              <th>As In</th>
+              <th>Type</th>
+              <th>Lesson</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for sound in sounds %}
+            <tr>
+              <td class="sound-chart__symbol school-font">{{ sound.symbol }}</td>
+              <td class="sound-chart__pronounced">{{ sound.pronounced }}</td>
+              <td class="sound-chart__asin">
+                {{ sound.asIn }}
+                {% if sound.note %}<span class="sound-chart__note">{{ sound.note }}</span>{% endif %}
+              </td>
+              <td class="sound-chart__type sound-chart__type--{{ sound.type }}">{{ sound.type }}</td>
+              <td class="sound-chart__lesson"><a href="/lessons/lesson-{{ sound.lesson | pad }}/">{{ sound.lesson }}</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">Common Mistakes to Avoid</h2>
+      <ul class="guide-tips">
+        <li><strong>Adding "uh" to stop sounds.</strong> Say "t" not "tuh", "d" not "duh", "p" not "puh". The extra vowel sound makes blending much harder.</li>
+        <li><strong>Stretching stop sounds.</strong> Sounds like t, d, c, g, p, b, and k cannot be held. Say them quickly and crisply.</li>
+        <li><strong>Confusing voiced and whispered pairs.</strong> "s" is whispered (no throat buzz), "z" is voiced (throat buzzes). Same mouth shape, different voicing.</li>
+        <li><strong>Rushing continuous sounds.</strong> Give the learner time to hear and feel mmm, sss, rrr. Hold them for 1&ndash;2 seconds when modeling.</li>
+        <li><strong>Saying letter names instead of sounds.</strong> We teach sounds, not names. The letter "s" says "sss", not "ess".</li>
+      </ul>
+    </section>
+
+    <div class="content-page__cta">
+      <a href="/lessons/" class="btn btn--cta">Start Lessons</a>
+    </div>
+  </div>
+</div>

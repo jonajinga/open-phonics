@@ -1,0 +1,109 @@
+---
+layout: layouts/base.njk
+title: Style Guide
+description: Design system and visual reference for the Open Phonics project.
+permalink: /style-guide/
+bodyClass: page-guide
+excludeFromSitemap: true
+---
+<div class="content-page">
+  <div class="content-page__inner" style="max-width:64rem">
+    <h1 class="content-page__title">Style Guide</h1>
+    <p class="content-page__intro">Design system and visual reference for Open Phonics. This page documents the colors, typography, components, and visual prompting system used throughout the application.</p>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">Color Palette</h2>
+      <div class="sg-colors">
+        <div class="sg-swatch" style="background:#074245;color:#fff">Teal 700<br>#074245</div>
+        <div class="sg-swatch" style="background:#0a5c5f;color:#fff">Teal 600<br>#0a5c5f</div>
+        <div class="sg-swatch" style="background:#36b5ab;color:#1c1917">Teal 400<br>#36b5ab</div>
+        <div class="sg-swatch" style="background:#d4a017;color:#1c1917">Gold 400<br>#d4a017</div>
+        <div class="sg-swatch" style="background:#b8860b;color:#fff">Gold 500<br>#b8860b</div>
+        <div class="sg-swatch" style="background:#1c1917;color:#fff">Stone 900<br>#1c1917</div>
+        <div class="sg-swatch" style="background:#57534e;color:#fff">Stone 600<br>#57534e</div>
+        <div class="sg-swatch" style="background:#f5f5f4;color:#1c1917;border:1px solid #e7e5e4">Stone 100<br>#f5f5f4</div>
+        <div class="sg-swatch" style="background:#dc2626;color:#fff">Red (pointer)<br>#dc2626</div>
+        <div class="sg-swatch" style="background:#1a7a3a;color:#fff">Green (praise)<br>#1a7a3a</div>
+        <div class="sg-swatch" style="background:#b91c1c;color:#fff">Rose (correct)<br>#b91c1c</div>
+        <div class="sg-swatch" style="background:#d97706;color:#fff">Amber (instruct)<br>#d97706</div>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">Typography</h2>
+      <div style="margin-bottom:var(--space-lg)">
+        <p style="font-family:var(--font-heading);font-size:2rem;font-weight:700;margin-bottom:var(--space-xs)">Lora — Headings</p>
+        <p style="font-size:0.8125rem;color:var(--text-secondary)">Serif. Used for h1, h2, h3 headings. Weights: 400, 500, 600, 700.</p>
+      </div>
+      <div style="margin-bottom:var(--space-lg)">
+        <p style="font-family:var(--font-ui);font-size:1.25rem;margin-bottom:var(--space-xs)">Source Sans 3 — Body Text</p>
+        <p style="font-size:0.8125rem;color:var(--text-secondary)">Sans-serif. Used for all body text, buttons, labels, and UI elements. Weights: 400, 500, 600, 700.</p>
+      </div>
+      <div>
+        <p class="school-font" style="font-size:2rem;margin-bottom:var(--space-xs)">Comic Neue — Learner Text</p>
+        <p style="font-size:0.8125rem;color:var(--text-secondary)">Used only in the child view for lesson display text. Weight: 700.</p>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">Visual Prompting System</h2>
+      <p>Based on the Funnix/Direct Instruction methodology. Four types of visual prompts help learners decode words:</p>
+      <div class="guide-cards" style="margin-top:var(--space-md)">
+        <div class="guide-card">
+          <h3 class="guide-card__title">Type 1: Underlined Combinations</h3>
+          <p style="font-size:2rem;margin:var(--space-sm) 0" class="school-font"><span class="digraph">sh</span> &nbsp; <span class="digraph">th</span> &nbsp; <span class="digraph">er</span></p>
+          <p>Letter combinations that make a single sound. CSS class: <code>.digraph</code></p>
+        </div>
+        <div class="guide-card">
+          <h3 class="guide-card__title">Type 2: Letter-Name Pairs</h3>
+          <p style="font-size:2rem;margin:var(--space-sm) 0" class="school-font"><span class="letter-name">a</span><span class="silent-partner">i</span> &nbsp; <span class="letter-name">e</span><span class="silent-partner">a</span></p>
+          <p>One letter says its name, the other is silent. CSS: <code>.letter-name</code> + <code>.silent-partner</code></p>
+        </div>
+        <div class="guide-card">
+          <h3 class="guide-card__title">Type 3: Silent Letters</h3>
+          <p style="font-size:2rem;margin:var(--space-sm) 0" class="school-font">māt<span class="silent">e</span> &nbsp; <span class="silent">k</span>now</p>
+          <p>Letters that don't make a sound. Shown smaller and faded. CSS class: <code>.silent</code></p>
+        </div>
+        <div class="guide-card">
+          <h3 class="guide-card__title">Type 4: Irregular Parts</h3>
+          <p style="font-size:2rem;margin:var(--space-sm) 0" class="school-font">s<span class="irregular">ai</span>d &nbsp; w<span class="irregular">a</span>s</p>
+          <p>Parts that don't follow learned rules. Wavy underline. CSS class: <code>.irregular</code></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">Spacing</h2>
+      <div class="guide-cards">
+        <div class="guide-card">
+          <h3 class="guide-card__title">Blend Space</h3>
+          <p style="font-size:2rem;margin:var(--space-sm) 0" class="school-font">m<span class="blend-space"></span>a<span class="blend-space"></span>t</p>
+          <p>Space between sounds during blending. CSS class: <code>.blend-space</code></p>
+        </div>
+        <div class="guide-card">
+          <h3 class="guide-card__title">Word Focus</h3>
+          <p style="font-size:1.25rem;margin:var(--space-sm) 0" class="school-font">The <span class="word-focus">cat</span> sat.</p>
+          <p>Highlights the current word in story reading. CSS class: <code>.word-focus</code></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">Design Principles</h2>
+      <ul class="guide-tips">
+        <li><strong>Squared edges.</strong> No border-radius on UI elements. Only the pointer dot and step dots are circular.</li>
+        <li><strong>High contrast.</strong> All text meets WCAG AA (4.5:1 minimum). Dark mode uses warm tones.</li>
+        <li><strong>No icons with text.</strong> Lesson controls (play, reset, back, next) use icons only.</li>
+        <li><strong>Child view is sacred.</strong> The reading display area is distraction-free — large text, centered, generous whitespace.</li>
+        <li><strong>Inclusive language.</strong> Use "the learner" or "the reader" — not "your child" or "your student."</li>
+        <li><strong>Professional, not playful.</strong> Lora serif headings, Source Sans body text. Comic Neue only in the child view.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<style>
+.sg-colors { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+.sg-swatch { padding: var(--space-md); min-width: 7rem; font-size: 0.75rem; font-weight: 600; line-height: 1.4; }
+code { padding: 0.125rem 0.375rem; background: var(--bg-surface-alt); border: 1px solid var(--border-color); font-size: 0.75rem; }
+</style>

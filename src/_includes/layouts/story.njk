@@ -1,0 +1,77 @@
+---
+layout: layouts/base.njk
+bodyClass: page-story
+---
+<div class="story-page">
+  <a href="/stories/" class="story-page__back">
+    {% include "partials/icons/arrow-left.njk" %} Back to Stories
+  </a>
+  <h1 class="story-page__title">{{ title }}</h1>
+  <p class="story-page__meta">Phase {{ phase }} &middot; {{ description }}</p>
+  <div class="story-page__content school-font">
+    {{ content | safe }}
+  </div>
+
+  {# Prev / Next story nav #}
+  {% set storyList = collections.stories %}
+  {% set currentIndex = -1 %}
+  {% for s in storyList %}
+    {% if s.url == page.url %}
+      {% set currentIndex = loop.index0 %}
+    {% endif %}
+  {% endfor %}
+
+  {# Comprehension questions #}
+  {% if comprehension and comprehension.length > 0 %}
+  <div class="story-comprehension">
+    <h2 class="story-comprehension__title">Comprehension</h2>
+    {% for q in comprehension %}
+    <div class="comprehension-q">
+      <div class="comprehension-q__question">{{ loop.index }}. {{ q.q }}</div>
+      <button class="comprehension-q__reveal" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Show Answer</button>
+      <div class="comprehension-q__answer">{{ q.a }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {# Word list for this story #}
+  {% if words and words.length > 0 %}
+  <div class="story-words">
+    <h2 class="story-words__title">Words in This Story</h2>
+    <div class="story-words__list">
+      {% for w in words %}
+      <span class="story-words__item">
+        <span class="story-words__word school-font">{{ w.word }}</span>
+        <span class="story-words__lesson">L{{ w.lesson }}</span>
+      </span>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <nav class="story-nav" aria-label="Story navigation">
+    {% if currentIndex > 0 %}
+      <a href="{{ storyList[currentIndex - 1].url }}" class="story-nav__link story-nav__link--prev">
+        <span class="story-nav__arrow">{% include "partials/icons/arrow-left.njk" %}</span>
+        <span class="story-nav__text">
+          <span class="story-nav__label">Previous Story</span>
+          <span class="story-nav__title">{{ storyList[currentIndex - 1].data.title }}</span>
+        </span>
+      </a>
+    {% else %}
+      <span></span>
+    {% endif %}
+    {% if currentIndex < storyList.length - 1 %}
+      <a href="{{ storyList[currentIndex + 1].url }}" class="story-nav__link story-nav__link--next">
+        <span class="story-nav__text">
+          <span class="story-nav__label">Next Story</span>
+          <span class="story-nav__title">{{ storyList[currentIndex + 1].data.title }}</span>
+        </span>
+        <span class="story-nav__arrow">{% include "partials/icons/arrow-right.njk" %}</span>
+      </a>
+    {% else %}
+      <span></span>
+    {% endif %}
+  </nav>
+</div>

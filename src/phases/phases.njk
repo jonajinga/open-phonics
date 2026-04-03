@@ -1,0 +1,114 @@
+---
+pagination:
+  data: phases
+  size: 1
+  alias: phase
+  addAllPagesToCollections: true
+permalink: /phases/{{ phase.slug }}/
+layout: layouts/base.njk
+bodyClass: page-guide
+eleventyComputed:
+  title: "{{ phase.title }}"
+  description: "{{ phase.description }}"
+---
+<div class="content-page">
+  <div class="content-page__inner">
+    <a href="/lessons/" class="story-page__back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Lessons
+    </a>
+
+    <h1 class="content-page__title">{{ phase.title }}</h1>
+    <p class="content-page__intro">{{ phase.description }}</p>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">What to Expect</h2>
+      <p>{{ phase.whatToExpect }}</p>
+    </section>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">Sounds Introduced</h2>
+      <div class="sound-chart-wrapper">
+        <table class="sound-chart">
+          <thead>
+            <tr>
+              <th>Sound</th>
+              <th>Type</th>
+              <th>As In</th>
+              <th>Lesson</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for sound in phase.soundsIntroduced %}
+            <tr>
+              <td class="sound-chart__symbol school-font">{{ sound.symbol }}</td>
+              <td class="sound-chart__type">{{ sound.type }}</td>
+              <td class="sound-chart__asin">{{ sound.example }}</td>
+              <td class="sound-chart__lesson"><a href="/lessons/lesson-{{ sound.lesson | pad }}/">{{ sound.lesson }}</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">Skills Learned</h2>
+      <ul class="guide-tips">
+        {% for skill in phase.skills %}
+        <li>{{ skill }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">Words Learned in This Phase</h2>
+      {% set phaseWords = wordList | where("phase", phase.id) %}
+      {% if phaseWords.length > 0 %}
+      <div class="phase-word-cloud">
+        {% for w in phaseWords %}
+        <span class="phase-word"><span class="phase-word__text school-font">{{ w.word }}</span><span class="phase-word__lesson">L{{ w.lesson }}</span></span>
+        {% endfor %}
+      </div>
+      <p style="margin-top:var(--space-md);font-size:0.8125rem;color:var(--text-secondary)">{{ phaseWords.length }} words &middot; <a href="/word-list/">View full word list</a></p>
+      {% else %}
+      <p style="font-size:0.8125rem;color:var(--text-secondary)">Review and fluency practice &mdash; no new words introduced. <a href="/word-list/">View full word list</a></p>
+      {% endif %}
+    </section>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">Stories for This Phase</h2>
+      {% set phaseStories = collections.stories | where("data.phase", phase.id) %}
+      {% if phaseStories.length > 0 %}
+      <div class="phase-stories-list">
+        {% for story in phaseStories %}
+        <div class="phase-story-card">
+          <a href="{{ story.url }}" class="phase-story-card__link">
+            <span class="phase-story-card__title">{{ story.data.title }}</span>
+            <span class="phase-story-card__desc">{{ story.data.description }}</span>
+          </a>
+          {% if story.data.words and story.data.words.length > 0 %}
+          <div class="phase-story-card__words">
+            {% for w in story.data.words %}
+            <span class="phase-story-card__word"><span class="school-font">{{ w.word }}</span> <span class="phase-story-card__wlesson">L{{ w.lesson }}</span></span>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p style="font-size:0.8125rem;color:var(--text-secondary)">No stories for this phase yet. <a href="/stories/">Browse all stories</a></p>
+      {% endif %}
+    </section>
+
+    <section class="guide-section">
+      <h2 class="guide-section__title">Tips for This Phase</h2>
+      <p>{{ phase.tips }}</p>
+    </section>
+
+    <div class="content-page__cta">
+      <a href="/lessons/#{{ phase.slug }}" class="btn btn--cta">Go to {{ phase.subtitle }}</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="hamburger-overlay" id="hamburger-overlay" onclick="closeMenu()"></div>
+<div class="hamburger-panel" id="hamburger-panel" role="dialog" aria-modal="true" aria-label="Navigation menu" data-open="false">
+  <div class="hamburger-panel__header">
+    <span class="hamburger-panel__title">Menu</span>
+    <button class="hamburger-panel__close" aria-label="Close menu" onclick="closeMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <nav class="hamburger-panel__nav" aria-label="Mobile navigation">
+    <ul class="hamburger-panel__list">
+      {% for item in navigation.main %}
+      <li>
+        <a href="{{ item.url }}" class="hamburger-panel__link{% if page.url == item.url %} is-active{% endif %}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+  <div class="hamburger-panel__footer">
+    <a href="/lessons/" class="btn btn--cta hamburger-panel__cta">Start Learning</a>
+  </div>
+</div>

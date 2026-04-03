@@ -1,0 +1,117 @@
+---
+layout: layouts/base.njk
+title: Curriculum Reference
+description: Complete scope and sequence for the Open Phonics reading program. 150 lessons, 93 sound patterns, 1,182 words across 7 phases.
+permalink: /curriculum/
+bodyClass: page-guide
+---
+<div class="content-page">
+  <div class="content-page__inner" style="max-width:72rem">
+    <h1 class="content-page__title">Curriculum Reference</h1>
+    <p class="content-page__intro">The complete scope and sequence for Open Phonics. 150 lessons covering 93 sound patterns and over 1,000 words across 7 phases.</p>
+
+    {# Quick stats #}
+    <div class="curriculum-stats">
+      <div class="curriculum-stat">
+        <span class="curriculum-stat__number">150</span>
+        <span class="curriculum-stat__label">Lessons</span>
+      </div>
+      <div class="curriculum-stat">
+        <span class="curriculum-stat__number">{{ sounds.length }}</span>
+        <span class="curriculum-stat__label">Sounds</span>
+      </div>
+      <div class="curriculum-stat">
+        <span class="curriculum-stat__number">{{ wordList.length }}</span>
+        <span class="curriculum-stat__label">Words</span>
+      </div>
+      <div class="curriculum-stat">
+        <span class="curriculum-stat__number">{{ phases.length }}</span>
+        <span class="curriculum-stat__label">Phases</span>
+      </div>
+      <div class="curriculum-stat">
+        <span class="curriculum-stat__number">{{ collections.stories.length }}</span>
+        <span class="curriculum-stat__label">Stories</span>
+      </div>
+    </div>
+
+    {# Phase overview #}
+    <section class="guide-section">
+      <h2 class="guide-section__title">Phase Overview</h2>
+      <div class="sound-chart-wrapper">
+        <table class="sound-chart">
+          <thead>
+            <tr>
+              <th>Phase</th>
+              <th>Lessons</th>
+              <th>Sounds Introduced</th>
+              <th>Words</th>
+              <th>Focus</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for phase in phases %}
+            <tr>
+              <td><a href="/phases/{{ phase.slug }}/" style="font-weight:700;color:var(--teal-600)">{{ phase.id }}</a></td>
+              <td>{{ phase.lessonRange }}</td>
+              <td>{{ phase.soundsIntroduced.length }}</td>
+              <td>{{ wordList | where("phase", phase.id) | length }}</td>
+              <td style="font-size:0.8125rem">{{ phase.title | replace("Phase " + phase.id + ": ", "") }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    {# Full scope and sequence #}
+    <section class="guide-section">
+      <h2 class="guide-section__title">Scope &amp; Sequence</h2>
+      <p style="font-size:0.875rem;color:var(--text-secondary);margin-bottom:var(--space-md)">Every sound in the order it is introduced, with its type, example word, and the lesson where it first appears.</p>
+      <div class="sound-chart-wrapper">
+        <table class="sound-chart">
+          <thead>
+            <tr>
+              <th>Lesson</th>
+              <th>Phase</th>
+              <th>Sound</th>
+              <th>Type</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for sound in sounds %}
+            <tr>
+              <td><a href="/lessons/lesson-{{ sound.lesson | pad }}/">{{ sound.lesson }}</a></td>
+              <td>{% if sound.lesson <= 20 %}1{% elif sound.lesson <= 40 %}2{% elif sound.lesson <= 75 %}3{% elif sound.lesson <= 88 %}4{% elif sound.lesson <= 100 %}5{% elif sound.lesson <= 125 %}6{% else %}7{% endif %}</td>
+              <td class="sound-chart__symbol school-font">{{ sound.symbol }}</td>
+              <td class="sound-chart__type sound-chart__type--{{ sound.type }}">{{ sound.type }}</td>
+              <td>{{ sound.asIn }}{% if sound.note %} <span class="sound-chart__note">{{ sound.note }}</span>{% endif %}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    {# Words per phase breakdown #}
+    <section class="guide-section">
+      <h2 class="guide-section__title">Word Distribution</h2>
+      {% for phase in phases %}
+      {% set phaseWords = wordList | where("phase", phase.id) %}
+      <div style="margin-bottom:var(--space-md)">
+        <h3 style="font-size:0.875rem;font-weight:700;color:var(--text-primary);margin-bottom:var(--space-xs)">Phase {{ phase.id }}: {{ phase.title | replace("Phase " + phase.id + ": ", "") }} &mdash; {{ phaseWords.length }} words</h3>
+        <div class="phase-word-cloud">
+          {% for w in phaseWords %}
+          <span class="phase-word"><span class="phase-word__text school-font">{{ w.word }}</span><span class="phase-word__lesson">L{{ w.lesson }}</span></span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+      <p style="font-size:0.8125rem;color:var(--text-secondary)"><a href="/word-list/">View full searchable word list</a></p>
+    </section>
+
+    <div class="content-page__cta">
+      <a href="/lessons/" class="btn btn--cta">Start Lessons</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+---
+layout: layouts/base.njk
+title: Stories
+description: Independent reading stories for practice, organized by phase.
+permalink: /stories/
+---
+<div class="stories-index">
+  <h1 class="stories-index__title">Stories</h1>
+  <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); font-size: 0.875rem;">
+    Independent reading practice. No pointer, no scripts &mdash; just reading!
+  </p>
+
+  {# Filter by phase #}
+  <div class="stories-filters">
+    <label class="stories-filter">
+      <span class="stories-filter__label">Filter by Phase</span>
+      <select id="filter-story-phase" class="stories-filter__select" onchange="filterStories()">
+        <option value="all">All Phases</option>
+        <option value="1">Phase 1</option>
+        <option value="2">Phase 2</option>
+        <option value="3">Phase 3</option>
+        <option value="4">Phase 4</option>
+        <option value="5">Phase 5</option>
+        <option value="6">Phase 6</option>
+        <option value="7">Phase 7</option>
+      </select>
+    </label>
+    <span class="stories-count" id="stories-count"></span>
+  </div>
+
+  <div class="stories-list" id="stories-list">
+    {% for story in collections.stories %}
+    <a href="{{ story.url }}" class="story-list-item" data-phase="{{ story.data.phase }}">
+      <span class="story-list-item__icon">{% include "partials/icons/book-open.njk" %}</span>
+      <div>
+        <div class="story-list-item__title">{{ story.data.title }}</div>
+        <div class="story-list-item__desc">Phase {{ story.data.phase }} &middot; {{ story.data.description }}</div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+function filterStories() {
+  var phase = document.getElementById("filter-story-phase").value;
+  var items = document.querySelectorAll("#stories-list .story-list-item");
+  var visible = 0;
+  items.forEach(function(item) {
+    var itemPhase = item.getAttribute("data-phase");
+    if (phase === "all" || itemPhase === phase) { item.style.display = ""; visible++; }
+    else { item.style.display = "none"; }
+  });
+  document.getElementById("stories-count").textContent = visible + " stories";
+}
+document.addEventListener("DOMContentLoaded", filterStories);
+</script>

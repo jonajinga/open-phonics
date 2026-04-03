@@ -1,0 +1,90 @@
+---
+layout: layouts/base.njk
+title: Word List
+description: Complete list of words taught in Open Phonics, organized by phase, lesson, and sounds.
+permalink: /word-list/
+bodyClass: page-guide
+---
+<div class="content-page">
+  <div class="content-page__inner" style="max-width:64rem">
+    <h1 class="content-page__title">Word List</h1>
+    <p class="content-page__intro">Every word the learner will learn to read in Open Phonics, mapped to the lesson and sounds used.</p>
+
+    {# Filter controls #}
+    <div class="wordlist-filters" id="wordlist-filters">
+      <label class="wordlist-filter">
+        <span class="wordlist-filter__label">Phase</span>
+        <select id="filter-phase" class="wordlist-filter__select" onchange="filterWords()">
+          <option value="all">All Phases</option>
+          <option value="1">Phase 1 (L1-20)</option>
+          <option value="2">Phase 2 (L21-40)</option>
+          <option value="3">Phase 3 (L41-75)</option>
+          <option value="4">Phase 4 (L76-88)</option>
+          <option value="5">Phase 5 (L89-100)</option>
+          <option value="6">Phase 6 (L101-125)</option>
+          <option value="7">Phase 7 (L126-150)</option>
+        </select>
+      </label>
+      <label class="wordlist-filter">
+        <span class="wordlist-filter__label">Lesson</span>
+        <select id="filter-lesson" class="wordlist-filter__select" onchange="filterWords()">
+          <option value="all">All Lessons</option>
+          {% range_options 1, 151 %}
+        </select>
+      </label>
+      <label class="wordlist-filter">
+        <span class="wordlist-filter__label">Search</span>
+        <input type="text" id="filter-search" class="wordlist-filter__input" placeholder="Search words..." oninput="filterWords()">
+      </label>
+      <span class="wordlist-count" id="wordlist-count"></span>
+    </div>
+
+    {# Word table #}
+    <div class="sound-chart-wrapper">
+      <table class="sound-chart" id="wordlist-table">
+        <thead>
+          <tr>
+            <th>Word</th>
+            <th>Phase</th>
+            <th>Lesson</th>
+            <th>Sounds</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for w in wordList %}
+          <tr data-phase="{{ w.phase }}" data-lesson="{{ w.lesson }}" data-word="{{ w.word | lower }}">
+            <td class="sound-chart__symbol school-font">{{ w.word }}</td>
+            <td>{{ w.phase }}</td>
+            <td><a href="/lessons/lesson-{{ w.lesson | pad }}/">{{ w.lesson }}</a></td>
+            <td class="wordlist-sounds">{{ w.sounds | join(" + ") }}</td>
+            <td class="wordlist-note">{{ w.note or "" }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+function filterWords() {
+  var phase = document.getElementById("filter-phase").value;
+  var lesson = document.getElementById("filter-lesson").value;
+  var search = document.getElementById("filter-search").value.toLowerCase().trim();
+  var rows = document.querySelectorAll("#wordlist-table tbody tr");
+  var visible = 0;
+  rows.forEach(function(row) {
+    var rowPhase = row.getAttribute("data-phase");
+    var rowLesson = row.getAttribute("data-lesson");
+    var rowWord = row.getAttribute("data-word");
+    var showPhase = phase === "all" || rowPhase === phase;
+    var showLesson = lesson === "all" || rowLesson === lesson;
+    var showSearch = !search || rowWord.includes(search);
+    if (showPhase && showLesson && showSearch) { row.style.display = ""; visible++; }
+    else { row.style.display = "none"; }
+  });
+  document.getElementById("wordlist-count").textContent = visible + " words";
+}
+document.addEventListener("DOMContentLoaded", filterWords);
+</script>

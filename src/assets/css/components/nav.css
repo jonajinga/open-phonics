@@ -1,0 +1,61 @@
+/* ===== Main Navigation ===== */
+.main-nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .main-nav {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.main-nav__list {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.main-nav__link {
+  display: flex;
+  align-items: center;
+  padding: 0 0.875rem;
+  height: var(--header-height);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.main-nav__link:hover,
+.main-nav__link.is-active {
+  color: #ffffff;
+}
+
+/* Active underline */
+.main-nav__link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0.875rem;
+  right: 0.875rem;
+  height: 2px;
+  background: var(--gold-400);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+.main-nav__link:hover::after,
+.main-nav__link.is-active::after {
+  transform: scaleX(1);
+}
+
+/* Hide hamburger on desktop */
+@media (min-width: 768px) {
+  .hamburger-btn { display: none !important; }
+}

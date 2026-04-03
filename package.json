@@ -1,0 +1,24 @@
+{
+  "name": "open-phonics",
+  "version": "1.0.0",
+  "description": "Free, open-source phonics app that teaches children to read.",
+  "scripts": {
+    "start": "npx --node-options=--max-old-space-size=8192 @11ty/eleventy --serve --port=8080",
+    "dev": "npx --node-options=--max-old-space-size=8192 @11ty/eleventy --serve --port=8080",
+    "build": "npx --node-options=--max-old-space-size=8192 @11ty/eleventy",
+    "clean": "npx rimraf _site"
+  },
+  "keywords": [
+    "phonics",
+    "reading",
+    "education",
+    "open-source"
+  ],
+  "author": "Pikes Peak Web Designs",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.5",
+    "@sardine/eleventy-plugin-tinyhtml": "^0.2.0"
+  }
+}

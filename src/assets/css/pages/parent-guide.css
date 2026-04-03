@@ -1,0 +1,585 @@
+/* ===== Content Pages (Parent Guide, About, Contact) ===== */
+.content-page {
+  padding: var(--space-2xl) var(--space-md);
+}
+
+.content-page__inner {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.content-page__title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.content-page__intro {
+  font-size: 1.0625rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-2xl);
+}
+
+.content-page__cta {
+  text-align: center;
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border-color);
+}
+
+/* Guide sections */
+.guide-section {
+  margin-bottom: var(--space-2xl);
+}
+
+.guide-section__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--teal-200);
+}
+[data-theme="dark"] .guide-section__title {
+  border-bottom-color: var(--teal-800);
+}
+
+.guide-section p {
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+}
+
+.guide-section a {
+  color: var(--teal-600);
+  font-weight: 600;
+}
+.guide-section a:hover { text-decoration: underline; }
+[data-theme="dark"] .guide-section a { color: var(--teal-400); }
+
+/* Guide cards grid */
+.guide-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+@media (min-width: 640px) {
+  .guide-cards { grid-template-columns: 1fr 1fr; }
+}
+
+.guide-card {
+  padding: var(--space-lg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface-alt);
+}
+
+.guide-card__title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--teal-700);
+  margin-bottom: var(--space-sm);
+}
+[data-theme="dark"] .guide-card__title { color: var(--teal-400); }
+
+.guide-card p {
+  font-size: 0.8125rem;
+  margin-bottom: 0;
+}
+
+/* Feedback row */
+.guide-feedback-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+@media (min-width: 640px) {
+  .guide-feedback-row { grid-template-columns: 1fr 1fr; }
+}
+
+.guide-feedback {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+}
+
+.guide-feedback h3 {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+
+.guide-feedback p {
+  font-size: 0.8125rem;
+}
+
+.guide-feedback--praise {
+  background: var(--green-50);
+  border: 1px solid var(--green-200);
+}
+.guide-feedback--praise h3 { color: var(--green-600); }
+[data-theme="dark"] .guide-feedback--praise {
+  background: var(--green-900-20);
+  border-color: rgba(20, 83, 45, 0.3);
+}
+
+.guide-feedback--correct {
+  background: var(--rose-50);
+  border: 1px solid var(--rose-200);
+}
+.guide-feedback--correct h3 { color: var(--rose-600); }
+[data-theme="dark"] .guide-feedback--correct {
+  background: var(--rose-900-20);
+  border-color: rgba(127, 29, 29, 0.3);
+}
+
+/* Tips list */
+.guide-tips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.guide-tips li {
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  padding-left: var(--space-md);
+  position: relative;
+}
+
+.guide-tips li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--teal-500);
+}
+
+/* Keyboard shortcut grid */
+.shortcut-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+}
+@media (min-width: 480px) {
+  .shortcut-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.8125rem;
+  color: var(--text-primary);
+}
+
+.shortcut-item kbd {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-alt);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.shortcut-item span {
+  color: var(--text-secondary);
+}
+
+/* ===== Sound Chart Table ===== */
+.sound-chart-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sound-chart {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.sound-chart thead {
+  background: var(--bg-surface-alt);
+  position: sticky;
+  top: 0;
+}
+
+.sound-chart th {
+  text-align: left;
+  padding: 0.625rem var(--space-md);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.sound-chart td {
+  padding: 0.5rem var(--space-md);
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.sound-chart tbody tr:hover {
+  background: var(--bg-surface-alt);
+}
+
+.sound-chart__symbol {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  min-width: 3rem;
+}
+
+.sound-chart__pronounced {
+  font-family: var(--font-ui);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.sound-chart__asin {
+  color: var(--text-primary);
+}
+
+.sound-chart__note {
+  display: block;
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.sound-chart__type {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.sound-chart__type--voiced { color: var(--teal-600); }
+.sound-chart__type--whispered { color: var(--stone-500); }
+
+[data-theme="dark"] .sound-chart__type--voiced { color: var(--teal-400); }
+
+.sound-chart__lesson a {
+  color: var(--teal-600);
+  font-weight: 600;
+}
+.sound-chart__lesson a:hover { text-decoration: underline; }
+[data-theme="dark"] .sound-chart__lesson a { color: var(--teal-400); }
+
+/* ===== Word List / Stories Filters ===== */
+.wordlist-filters,
+.stories-filters {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.wordlist-filter,
+.stories-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.wordlist-filter__label,
+.stories-filter__label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.wordlist-filter__select,
+.stories-filter__select,
+.wordlist-filter__input {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  font-family: var(--font-ui);
+  min-width: 8rem;
+}
+
+.wordlist-filter__input { min-width: 12rem; }
+
+.wordlist-count,
+.stories-count {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding-bottom: 0.375rem;
+}
+
+.wordlist-sounds {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+}
+
+.wordlist-note {
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Phase word cloud */
+.phase-word-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.phase-word {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+}
+
+.phase-word__text {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.phase-word__lesson {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  color: var(--teal-600);
+}
+[data-theme="dark"] .phase-word__lesson { color: var(--teal-400); }
+
+/* Phase story cards with word lists */
+.phase-stories-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.phase-story-card {
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+}
+
+.phase-story-card__link {
+  display: block;
+  padding: var(--space-md) var(--space-lg);
+  transition: background-color 0.15s;
+}
+.phase-story-card__link:hover {
+  background: var(--bg-surface-alt);
+}
+
+.phase-story-card__title {
+  display: block;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.125rem;
+}
+
+.phase-story-card__desc {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+.phase-story-card__words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: var(--space-sm) var(--space-lg);
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-surface-alt);
+}
+
+.phase-story-card__word {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.125rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 0.125rem 0.375rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+}
+
+.phase-story-card__wlesson {
+  font-size: 0.5rem;
+  font-weight: 600;
+  color: var(--teal-600);
+}
+[data-theme="dark"] .phase-story-card__wlesson { color: var(--teal-400); }
+
+/* ===== Curriculum Stats ===== */
+.curriculum-stats {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.curriculum-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  min-width: 6rem;
+}
+
+.curriculum-stat__number {
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--teal-600);
+  line-height: 1;
+}
+[data-theme="dark"] .curriculum-stat__number { color: var(--teal-400); }
+
+.curriculum-stat__label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+/* ===== Roadmap ===== */
+.roadmap-phase {
+  margin-bottom: var(--space-2xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--border-color);
+}
+.roadmap-phase:last-child { border-bottom: none; }
+
+.roadmap-phase__header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xs);
+}
+
+.roadmap-phase__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+.roadmap-phase__title a { color: var(--text-primary); }
+.roadmap-phase__title a:hover { color: var(--teal-600); }
+[data-theme="dark"] .roadmap-phase__title a:hover { color: var(--teal-400); }
+
+.roadmap-phase__meta {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.roadmap-phase__desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  line-height: 1.6;
+}
+
+/* Lesson dots track */
+.roadmap-track {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  align-items: flex-start;
+}
+
+.roadmap-dot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+  width: 2.25rem;
+  padding: 0.25rem 0;
+  text-decoration: none;
+  transition: transform 0.1s;
+}
+.roadmap-dot:hover { transform: scale(1.15); }
+
+.roadmap-dot__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--radius-full);
+  background: var(--stone-200);
+  color: var(--text-secondary);
+  font-size: 0.625rem;
+  font-weight: 700;
+}
+[data-theme="dark"] .roadmap-dot__number {
+  background: var(--stone-700);
+  color: var(--stone-300);
+}
+
+/* Milestone dots (new sound introduced) */
+.roadmap-dot--milestone .roadmap-dot__number {
+  background: var(--teal-600);
+  color: #fff;
+}
+[data-theme="dark"] .roadmap-dot--milestone .roadmap-dot__number {
+  background: var(--teal-500);
+}
+
+.roadmap-dot__sound {
+  font-size: 0.625rem;
+  font-weight: 700;
+  font-family: var(--font-child);
+  color: var(--teal-700);
+  text-align: center;
+  line-height: 1;
+}
+[data-theme="dark"] .roadmap-dot__sound { color: var(--teal-400); }
+
+/* Stories in roadmap */
+.roadmap-stories {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-top: var(--space-md);
+  font-size: 0.8125rem;
+}
+
+.roadmap-stories__label {
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.roadmap-stories__link {
+  color: var(--teal-600);
+  font-weight: 600;
+}
+.roadmap-stories__link:hover { text-decoration: underline; }
+[data-theme="dark"] .roadmap-stories__link { color: var(--teal-400); }

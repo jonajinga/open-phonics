@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+title: Page Not Found
+description: The page you're looking for doesn't exist.
+permalink: /404.html
+excludeFromSitemap: true
+---
+<div style="max-width: 32rem; margin: 4rem auto; text-align: center; padding: 0 1rem;">
+  <h1 style="font-size: 4rem; font-weight: 800; color: var(--indigo-600); margin-bottom: 0.5rem;">404</h1>
+  <p style="font-size: 1.25rem; color: var(--text-primary); margin-bottom: 0.5rem;">Page not found</p>
+  <p style="color: var(--text-secondary); margin-bottom: 2rem;">The page you're looking for doesn't exist.</p>
+  <a href="/" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--indigo-600); color: #fff; border-radius: var(--radius-lg); font-weight: 700; transition: background-color 0.2s;">
+    {% include "partials/icons/arrow-left.njk" %} Back to Dashboard
+  </a>
+</div>

@@ -1,0 +1,130 @@
+---
+layout: layouts/base.njk
+title: Lessons
+description: Browse all 100 phonics lessons organized by phase. Track your progress as you learn to read.
+permalink: /lessons/
+bodyClass: page-lessons
+---
+<div class="dashboard">
+  <div class="dashboard__inner">
+
+    {# Student Profile Selector #}
+    <div id="profile-selector"></div>
+
+    {# Phase 1 #}
+    <section class="phase-section" id="phase-1">
+      <h2 class="phase-section__title"><a href="/phases/phase-1/">Phase 1: Foundation</a></h2>
+      <p class="phase-section__subtitle">Lessons 1&ndash;20 &middot; First sounds (m, s, a, ē, t, r, d, i, th, c) &amp; first words</p>
+      <div class="lesson-grid">
+        {% for lesson in lessons | where("phase", 1) %}
+        <a href="/lessons/lesson-{{ lesson.id | pad }}/" class="lesson-card" data-lesson-id="{{ lesson.id }}">
+          <span class="lesson-card__number">{{ lesson.id }}</span>
+          <span class="lesson-card__target">{{ lesson.target }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    {# Phase 2 #}
+    <section class="phase-section" id="phase-2">
+      <h2 class="phase-section__title"><a href="/phases/phase-2/">Phase 2: Building</a></h2>
+      <p class="phase-section__subtitle">Lessons 21&ndash;40 &middot; More sounds (o, n, f, u, l, w, g, sh, ā, h) &amp; sentences</p>
+      <div class="lesson-grid">
+        {% for lesson in lessons | where("phase", 2) %}
+        <a href="/lessons/lesson-{{ lesson.id | pad }}/" class="lesson-card" data-lesson-id="{{ lesson.id }}">
+          <span class="lesson-card__number">{{ lesson.id }}</span>
+          <span class="lesson-card__target">{{ lesson.target }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    {# Phase 3 #}
+    <section class="phase-section" id="phase-3">
+      <h2 class="phase-section__title"><a href="/phases/phase-3/">Phase 3: Expanding</a></h2>
+      <p class="phase-section__subtitle">Lessons 41&ndash;75 &middot; Remaining sounds (k, ō, v, p, ar, ch, e, b, ing, ī, y, er, oo, j, wh, ȳ, ū, qu, x, z)</p>
+      <div class="lesson-grid">
+        {% for lesson in lessons | where("phase", 3) %}
+        <a href="/lessons/lesson-{{ lesson.id | pad }}/" class="lesson-card" data-lesson-id="{{ lesson.id }}">
+          <span class="lesson-card__number">{{ lesson.id }}</span>
+          <span class="lesson-card__target">{{ lesson.target }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    {# Phase 4 #}
+    <section class="phase-section" id="phase-4">
+      <h2 class="phase-section__title"><a href="/phases/phase-4/">Phase 4: Vowel Teams</a></h2>
+      <p class="phase-section__subtitle">Lessons 76&ndash;88 &middot; Vowel teams (ea, ai) &amp; review</p>
+      <div class="lesson-grid">
+        {% for lesson in lessons | where("phase", 4) %}
+        <a href="/lessons/lesson-{{ lesson.id | pad }}/" class="lesson-card" data-lesson-id="{{ lesson.id }}">
+          <span class="lesson-card__number">{{ lesson.id }}</span>
+          <span class="lesson-card__target">{{ lesson.target }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    {# Phase 5 #}
+    <section class="phase-section" id="phase-5">
+      <h2 class="phase-section__title"><a href="/phases/phase-5/">Phase 5: Fluency</a></h2>
+      <p class="phase-section__subtitle">Lessons 89&ndash;100 &middot; Final sounds (ou), fluency practice &amp; graduation</p>
+      <div class="lesson-grid">
+        {% for lesson in lessons | where("phase", 5) %}
+        <a href="/lessons/lesson-{{ lesson.id | pad }}/" class="lesson-card" data-lesson-id="{{ lesson.id }}">
+          <span class="lesson-card__number">{{ lesson.id }}</span>
+          <span class="lesson-card__target">{{ lesson.target }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    {# Phase 6 #}
+    <section class="phase-section" id="phase-6">
+      <h2 class="phase-section__title"><a href="/phases/phase-6/">Phase 6: Blends &amp; Advanced</a></h2>
+      <p class="phase-section__subtitle">Lessons 101&ndash;125 &middot; Blends, diphthongs, silent letters, -ed, soft c/g</p>
+      <div class="lesson-grid">
+        {% for lesson in lessons | where("phase", 6) %}
+        <a href="/lessons/lesson-{{ lesson.id | pad }}/" class="lesson-card" data-lesson-id="{{ lesson.id }}">
+          <span class="lesson-card__number">{{ lesson.id }}</span>
+          <span class="lesson-card__target">{{ lesson.target }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    {# Phase 7 #}
+    <section class="phase-section" id="phase-7">
+      <h2 class="phase-section__title"><a href="/phases/phase-7/">Phase 7: Mastery</a></h2>
+      <p class="phase-section__subtitle">Lessons 126&ndash;150 &middot; Remaining blends, silent letters, suffixes, syllable types &amp; graduation</p>
+      <div class="lesson-grid">
+        {% for lesson in lessons | where("phase", 7) %}
+        <a href="/lessons/lesson-{{ lesson.id | pad }}/" class="lesson-card" data-lesson-id="{{ lesson.id }}">
+          <span class="lesson-card__number">{{ lesson.id }}</span>
+          <span class="lesson-card__target">{{ lesson.target }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    {# Progress Actions #}
+    <div class="progress-actions">
+      <span class="progress-actions__title">Progress</span>
+      <button class="btn--progress" id="btn-export-progress" title="Export progress" aria-label="Export progress" onclick="window.phonicsProgress && window.phonicsProgress.exportProgress()">
+        {% include "partials/icons/download.njk" %}
+      </button>
+      <button class="btn--progress" id="btn-import-progress" title="Import progress" aria-label="Import progress">
+        {% include "partials/icons/upload.njk" %}
+      </button>
+      <button class="btn--progress" id="btn-reset-progress" title="Reset progress" aria-label="Reset progress">
+        {% include "partials/icons/rotate-ccw.njk" %}
+      </button>
+      <input type="file" id="import-progress-input" class="progress-import-input" accept=".json">
+    </div>
+
+  </div>
+</div>
+
+<script src="/assets/js/progress.js" defer></script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{ meta.language }}" data-theme="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{var t=localStorage.getItem("theme-preference");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+  {% include "partials/seo-head.njk" %}
+  <link rel="preconnect" href="https://fonts.bunny.net">
+  <link href="https://fonts.bunny.net/css?family=comic-neue:700|source-sans-3:400,500,600,700|lora:400,500,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/global.css?v={{ "" | year }}">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="{{ meta.themeColor }}">
+  {% block head %}{% endblock %}
+</head>
+<body class="{{ bodyClass or '' }}" style="background:var(--bg-page);min-height:100vh;display:flex;flex-direction:column;font-family:var(--font-ui);color:var(--text-primary);overflow-x:hidden;transition:background-color 0.2s,color 0.2s">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  {% include "partials/header.njk" %}
+  {% include "partials/hamburger-panel.njk" %}
+  <main id="main-content" tabindex="-1" style="flex:1;display:flex;flex-direction:column">
+    {{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+  <script src="/assets/js/theme.js" defer></script>
+  <script src="/assets/js/nav.js" defer></script>
+  <script>if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js")}</script>
+  {% block scripts %}{% endblock %}
+  {# Umami Analytics — uncomment and replace with your actual values:
+  <script defer src="https://YOUR-UMAMI-DOMAIN/script.js" data-website-id="YOUR-WEBSITE-ID"></script>
+  #}
+</body>
+</html>

@@ -1,0 +1,18 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="/" class="site-header__logo">
+      <span class="site-header__brand">Open Phonics</span>
+    </a>
+    {% include "partials/nav.njk" %}
+    <div class="site-header__actions">
+      <button class="theme-toggle" aria-label="Switch to dark mode">
+        <span class="theme-toggle__light">{% include "partials/icons/moon.njk" %}</span>
+        <span class="theme-toggle__dark">{% include "partials/icons/sun.njk" %}</span>
+      </button>
+      <a href="/lessons/" class="btn-exit-lesson">Exit Lesson</a>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" onclick="openMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>

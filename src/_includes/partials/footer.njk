@@ -1,0 +1,34 @@
+<footer class="site-footer">
+  <div class="site-footer__grid">
+    <div class="site-footer__about">
+      <h3 class="site-footer__heading">Open Phonics</h3>
+      <p>A free, open-source reading program built on Direct Instruction methodology. No accounts, no tracking, no cost.</p>
+    </div>
+    <div class="site-footer__links">
+      <h3 class="site-footer__heading">Quick Links</h3>
+      <ul>
+        {% for item in navigation.footer.quickLinks %}
+        <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="site-footer__links">
+      <h3 class="site-footer__heading">Resources</h3>
+      <ul>
+        {% for item in navigation.footer.resources %}
+        <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <p>&copy; {{ "" | year }} Open Phonics &mdash; Free &amp; Open Source. Website by <a href="https://www.pikespeakwebdesigns.com">Pikes Peak Web Designs</a>.</p>
+    <div class="site-footer__legal">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/style-guide/">Style Guide</a>
+      <a href="/terms/">Terms</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+  </div>
+</footer>

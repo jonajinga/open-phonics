@@ -1,0 +1,9 @@
+<nav class="main-nav" id="main-nav" aria-label="Main navigation">
+  <ul class="main-nav__list">
+    {% for item in navigation.main %}
+    <li class="main-nav__item">
+      <a href="{{ item.url }}" class="main-nav__link{% if page.url == item.url %} is-active{% endif %}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</nav>

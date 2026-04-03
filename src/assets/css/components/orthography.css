@@ -1,0 +1,72 @@
+/* ===== Orthography Engine ===== */
+/* Visual prompting system aligned with Funnix/Direct Instruction methodology */
+
+/* Child view font */
+.school-font {
+  font-family: var(--font-child);
+  letter-spacing: 0.05em;
+}
+
+/* Spacing helpers for blending */
+.blend-space { margin: 0 0.3em; }
+.review-space { margin: 0 0.8em; }
+
+/* === Funnix Type 1: Underlined Letter Combinations === */
+/* Shows unique sounds for letter combos (sh, th, ch, wh, er, ar, oo, ing, ea, ai, ou) */
+.digraph {
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-decoration-color: var(--stone-400);
+  text-underline-offset: 0.15em;
+}
+
+/* === Funnix Type 2: Letter-Name Combinations (Together) === */
+/* Adjacent letters where one says its name and the other is silent */
+/* e.g., in "paint": a says its name (letter-name), i is silent (silent-partner) */
+.letter-name {
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.silent-partner {
+  opacity: 0.4;
+  font-weight: 400;
+}
+
+/* === Funnix Type 3: Letter-Name Combinations (Separated) === */
+/* Silent letters are smaller and faded to show they don't say anything */
+.silent {
+  opacity: 0.3;
+  font-size: 0.7em;
+  vertical-align: baseline;
+}
+
+/* === Funnix Type 4: Irregular Word Parts === */
+/* Squiggly underline for parts that don't follow learned rules */
+/* e.g., the "ai" in "said" doesn't make the typical long-a sound */
+.irregular {
+  text-decoration: underline wavy;
+  text-decoration-color: var(--rose-400);
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 0.06em;
+}
+
+/* === Long vowel macron via CSS (preserves the letter shape) === */
+/* Use <span class="macron">i</span> instead of Unicode ī */
+.macron {
+  position: relative;
+  display: inline-block;
+}
+.macron::after {
+  content: "";
+  position: absolute;
+  top: -0.05em;
+  left: 0.05em;
+  right: 0.05em;
+  height: 0.08em;
+  background: currentColor;
+}
+
+/* Highlighted word in story reading */
+.word-focus {
+  color: var(--dot-color);
+}
